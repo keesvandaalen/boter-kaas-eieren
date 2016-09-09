@@ -5,22 +5,23 @@ import React from 'react'
 import Vak from './Vak';
 import Rij from './Rij';
 
+const AANTAL_VAKKEN = 9;
+
 export default class BoterKaasEieren extends React.Component {
     constructor() {
         super();
-        this.state = {kruisje: true};
+        this.state = {kruisje: true, zetten: 0};
         this._vakken = [];
     }
 
     wisselGebruiker = kruisje => {
-        if(!this.state.gameover)
-        this.setState({kruisje: !kruisje});
+        this.setState({kruisje: !kruisje, zetten: this.state.zetten + 1});
         return false;
     };
 
     onDrieOpEenRij = rij => {
         this.setState({gameover: true});
-        rij.vakken.forEach(v => v.setState({winnaar:true}));
+        rij.vakken.forEach(v => v.setState({winnaar: true}));
     };
 
     componentDidMount = () => {
@@ -37,7 +38,7 @@ export default class BoterKaasEieren extends React.Component {
 
     createVakken() {
         const vakken = [];
-        for (let i = 0; i < 9; i++)
+        for (let i = 0; i < AANTAL_VAKKEN; i++)
             vakken.push(<Vak key={i}
                              kruisje={this.state.kruisje}
                              ref={v=>this._vakken.push(v)}
@@ -46,9 +47,18 @@ export default class BoterKaasEieren extends React.Component {
         return vakken;
     }
 
+    getTitle = () => {
+        if(this.state.zetten == AANTAL_VAKKEN)
+            return "Gelijkspel...";
+        let title = this.state.kruisje ? "Kruisje" : "Nulletje";
+        if (this.state.gameover)
+            title += " heeft gewonnen!";
+        return title;
+    };
+
     render = () => (
         <div>
-            <h1>{this.state.kruisje ? "Kruisje" : "Nulletje"}</h1>
+            <h1>{this.getTitle()}</h1>
             <div className="bord">
                 {this.createVakken()}
             </div>

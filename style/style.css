@@ -8,10 +8,14 @@
     width: 30%;
     height: 30%;
     float: left;
-    border: .5px solid black;
+    border: 1px solid black;
 }
 
 .winnaar {
     background-color: black;
     color: white;
+}
+
+h1 {
+    text-align: center;
 }
