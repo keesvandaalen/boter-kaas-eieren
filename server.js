@@ -25,7 +25,7 @@ app.get('/style.css', (req, res) => {
   if (process.env.PRODUCTION) {
     res.sendFile(__dirname + '/build/style.css');
   } else {
-    res.redirect('//localhost:9090/build/style.css');
+    res.redirect('//localhost:9090/style/style.css');
   }
 });
 
