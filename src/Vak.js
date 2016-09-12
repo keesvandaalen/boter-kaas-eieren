@@ -23,8 +23,12 @@ export default class Vak extends React.Component
         }
     };
 
-    render = () => <div className={`vak ${this.state.winnaar ? 'winnaar' : ''}`}
-                        onClick={this.handleClick}>
-        {this.state.inhoud}
-        </div>
+    render() {
+        return (
+            <div className={`vak ${this.state.winnaar ? 'winnaar' : ''}`}
+                 onClick={this.handleClick}>
+                {this.state.inhoud}
+            </div>
+        )
+    }
 }

@@ -56,12 +56,14 @@ export default class BoterKaasEieren extends React.Component {
         return title;
     };
 
-    render = () => (
-        <div>
-            <h1>{this.getTitle()}</h1>
-            <div className="bord">
-                {this.createVakken()}
+    render() {
+        return (
+            <div>
+                <h1>{this.getTitle()}</h1>
+                <div className="bord">
+                    {this.createVakken()}
+                </div>
             </div>
-        </div>
-    );
+        )
+    };
 }
