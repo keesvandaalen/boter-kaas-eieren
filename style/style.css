@@ -1,3 +1,7 @@
+html{
+    font-family: Roboto, Verdana, arial, sans-serif;
+}
+
 .bord {
     width: 300px;
     height: 300px;
@@ -8,11 +12,21 @@
     width: 30%;
     height: 30%;
     float: left;
-    border: 1px solid black;
+    display: table-cell;
+    text-align: center;
+    font-size:21px;
+    line-height: 90px;
+}
+.vak:nth-child(even){
+    background-color:#dde1f3;
 }
 
-.winnaar {
-    background-color: black;
+.vak:nth-child(odd) {
+    background-color:#c4caeb;
+}
+
+div.winnaar {
+    background-color:#0ba43d !important;
     color: white;
 }
 
