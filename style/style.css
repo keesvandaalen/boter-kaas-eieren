@@ -1,5 +1,6 @@
 html{
     font-family: Roboto, Verdana, arial, sans-serif;
+    text-align: center;
 }
 
 .bord {
@@ -28,8 +29,4 @@ html{
 div.winnaar {
     background-color:#0ba43d !important;
     color: white;
-}
-
-h1 {
-    text-align: center;
 }

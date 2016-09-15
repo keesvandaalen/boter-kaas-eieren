@@ -13,6 +13,8 @@ export default class Vak extends React.Component
 
     addListener = listener => this._listeners.push(listener);
 
+    reset = () => this.setState({winnaar:false, inhoud:null});
+
     handleClick = e => {
         if(this.state.inhoud || this.props.gameover)
             e.stopPropagation();

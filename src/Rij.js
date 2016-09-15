@@ -28,5 +28,10 @@ export default class Rij {
         if (drieOpEenRij)
             this._onDrieOpEenRij(this);
         return drieOpEenRij;
+    };
+
+    reset() {
+        this._aantalKruisje = 0;
+        this._aantalNulletje = 0;
     }
 }
