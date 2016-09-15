@@ -40,7 +40,7 @@ export default class BoterKaasEieren extends React.Component {
 
             // Diagonaal
             new Rij([this._vakken[0], this._vakken[4], this._vakken[8]], this.onDrieOpEenRij),
-            new Rij([this._vakken[2], this._vakken[4], this._vakken[6]], this.onDrieOpEenRij),
+            new Rij([this._vakken[2], this._vakken[4], this._vakken[6]], this.onDrieOpEenRij)
         );
         // Wissel van speler
         this._vakken.forEach(v => v.addListener(this.wisselGebruiker));
