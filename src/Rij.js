@@ -24,7 +24,7 @@ export default class Rij {
         else
             this._aantalNulletje++;
 
-        const drieOpEenRij = this._aantalKruisje == 3 || this._aantalNulletje == 3
+        const drieOpEenRij = this._aantalKruisje == 3 || this._aantalNulletje == 3;
         if (drieOpEenRij)
             this._onDrieOpEenRij(this);
         return drieOpEenRij;

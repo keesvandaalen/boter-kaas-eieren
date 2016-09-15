@@ -4,6 +4,7 @@
 import React from 'react'
 import Vak from './Vak';
 import Rij from './Rij';
+import Titel from './Titel';
 
 const AANTAL_VAKKEN = 9;
 
@@ -25,14 +26,21 @@ export default class BoterKaasEieren extends React.Component {
     };
 
     componentDidMount = () => {
+        // Horizontaal
         new Rij([this._vakken[0], this._vakken[1], this._vakken[2]], this.onDrieOpEenRij);
         new Rij([this._vakken[3], this._vakken[4], this._vakken[5]], this.onDrieOpEenRij);
         new Rij([this._vakken[6], this._vakken[7], this._vakken[8]], this.onDrieOpEenRij);
+
+        // Verticaal
         new Rij([this._vakken[0], this._vakken[3], this._vakken[6]], this.onDrieOpEenRij);
         new Rij([this._vakken[1], this._vakken[4], this._vakken[7]], this.onDrieOpEenRij);
         new Rij([this._vakken[2], this._vakken[5], this._vakken[8]], this.onDrieOpEenRij);
+
+        // Diagonaal
         new Rij([this._vakken[0], this._vakken[4], this._vakken[8]], this.onDrieOpEenRij);
         new Rij([this._vakken[2], this._vakken[4], this._vakken[6]], this.onDrieOpEenRij);
+
+        // Wissel van speler
         this._vakken.forEach(v => v.addListener(this.wisselGebruiker));
     };
 
@@ -47,19 +55,12 @@ export default class BoterKaasEieren extends React.Component {
         return vakken;
     }
 
-    getTitle = () => {
-        if(this.state.zetten == AANTAL_VAKKEN)
-            return "Gelijkspel...";
-        let title = this.state.kruisje ? "Kruisje" : "Nulletje";
-        if (this.state.gameover)
-            title += " heeft gewonnen!";
-        return title;
-    };
-
     render() {
         return (
             <div>
-                <h1>{this.getTitle()}</h1>
+                <Titel speler={this.state.kruisje ? "Kruisje" : "Nulletje"}
+                       gameover={this.state.gameover}
+                       gelijkspel={this.state.zetten == AANTAL_VAKKEN} />
                 <div className="bord">
                     {this.createVakken()}
                 </div>
