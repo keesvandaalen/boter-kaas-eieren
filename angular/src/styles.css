@@ -1,0 +1,28 @@
+#app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+    width: 303px;
+    margin: 0 auto;
+  }
+  #app > div {
+    display: flex;
+  }
+  .veld {
+    width: 100px;
+    height: 100px;
+    border: 1px solid grey;
+    padding: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 80px;
+  }
+  .winnaar {
+    background-color: lightgrey;
+  }
+  

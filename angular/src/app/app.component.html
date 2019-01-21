@@ -1,0 +1,21 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="app">
+  <h1>{{ message }}</h1>
+  <div>
+    <app-veld [zetten]="zetten" id="a1" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="a2" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="a3" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+  </div>
+  <div>
+    <app-veld [zetten]="zetten" id="b1" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="b2" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="b3" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+  </div>
+  <div>
+    <app-veld [zetten]="zetten" id="c1" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="c2" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+    <app-veld [zetten]="zetten" id="c3" [winnende-rij]="winnendeRij" (gezet)="verwerkZet($event)"></app-veld>
+  </div>
+  <button *ngIf="klaar" (click)="opnieuw()">Opnieuw</button>
+</div>
+
