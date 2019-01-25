@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Vanilla JS</title>
+        <style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  width: 303px;
+  margin: 0 auto;
+}
+#app > div {
+  display: flex;
+}
+.veld {
+  width: 100px;
+  height: 100px;
+  border: 1px solid grey;
+  padding: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+  font-size: 80px;
+}
+.winnaar {
+  background-color: lightgrey;
+}
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+(function () {
+    var zetten = {};
+    var speler = 'Kruisje';
+    var aantal = 0;
+    var winnendeRij = [];
+    const gewonnen = () => winnendeRij.length === 3;
+    const klaar = (n = aantal, rij = winnendeRij) => rij.length === 3 || n >= 9;
+    const message = () => gewonnen() ? `${speler} heeft gewonnen` : klaar() ? 
+        'Gelijkspel' : `${speler} is aan de beurt`;
+    const bepaalWinnendeRij = (id, speler) => {
+        return [
+            ["a1", "a2", "a3"], ["b1", "b2", "b3"], ["c1", "c2", "c3"],
+            ["a1", "b1", 'c1'], ["a2", "b2", 'c2'], ["a3", "b3", 'c3'],
+            ['a1', 'b2', 'c3'], ['a3', 'b2', 'c1']
+        ].filter(r => r.includes(id))
+            .find(r => r.every(e => zetten[e] === speler)) || [];
+    }
+    const wissel = () => speler = speler === 'Kruisje' ? 'Nulletje' : 'Kruisje';
+    const verwerkZet = (id) => e => {
+        if (!klaar()) {
+            e.target.innerText = speler == 'Kruisje' ? 'X' : 
+                speler == 'Nulletje' ? 'O' : undefined;
+            aantal = aantal+1;
+            zetten[id] = speler;
+            const rij = bepaalWinnendeRij(id, speler);
+            if (rij.length === 3) {
+                winnendeRij = rij;
+                winnendeRij.forEach(id => {
+                    const veld = document.querySelector(`#${id}`);
+                    veld.classList.add("winnaar");
+                });
+            }
+            if (!klaar(aantal, rij)) {
+                wissel();
+            } else {
+                document.querySelector("button").hidden = false;
+            }
+            document.querySelector("h1").innerText = message();
+        }
+    };
+    const opnieuw = () => {
+        wissel();
+        aantal = 0;
+        zetten = {};
+        winnendeRij = [];
+        render();
+    };
+    const render = () => {
+        const app = document.querySelector("#app");
+        while (app.children.length) {
+            app.children[0].remove();
+        }
+        const h1 = document.createElement("h1");
+        h1.innerText = message();
+        app.appendChild(h1);
+        ['a', 'b', 'c'].forEach(r => {
+            const div = document.createElement("div");
+            app.appendChild(div);
+            [1, 2, 3].forEach(c => {
+                const veld = document.createElement("div");
+                veld.className = "veld";
+                veld.id = `${r}${c}`;
+                veld.onclick = verwerkZet(veld.id);
+                veld.appendChild(document.createElement("div"));
+                div.appendChild(veld);
+            });
+        });
+        const button = document.createElement("button");
+        button.innerText = 'Opnieuw';
+        button.onclick = opnieuw;
+        button.hidden = true;
+        app.appendChild(button);
+    };
+    render();
+})();
+        </script>
+    </body>
+</html>
